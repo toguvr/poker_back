@@ -8,7 +8,6 @@ import 'express-async-errors';
 
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
-import routes from './routes';
 import http from 'http';
 import socketio from 'socket.io';
 
@@ -16,6 +15,7 @@ import '@shared/infra/typeorm';
 import '@shared/container';
 import { container } from 'tsyringe';
 import CreateRoomService from '@modules/room/services/CreateRoomService';
+import routes from './routes';
 
 const app = express();
 
@@ -97,6 +97,6 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   });
 });
 
-server.listen(3333, () => {
+server.listen(process.env.PORT || 3333, () => {
   console.log('🦾 Server started on port 3333');
 });

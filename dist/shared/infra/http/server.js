@@ -16,8 +16,6 @@ var _upload = _interopRequireDefault(require("../../../config/upload"));
 
 var _AppError = _interopRequireDefault(require("../../errors/AppError"));
 
-var _routes = _interopRequireDefault(require("./routes"));
-
 var _http = _interopRequireDefault(require("http"));
 
 var _socket = _interopRequireDefault(require("socket.io"));
@@ -29,6 +27,8 @@ require("../../container");
 var _tsyringe = require("tsyringe");
 
 var _CreateRoomService = _interopRequireDefault(require("../../../modules/room/services/CreateRoomService"));
+
+var _routes = _interopRequireDefault(require("./routes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -101,6 +101,6 @@ app.use((err, request, response, _) => {
     message: 'Internal server error'
   });
 });
-server.listen(3333, () => {
+server.listen(process.env.PORT || 3333, () => {
   console.log('🦾 Server started on port 3333');
 });
